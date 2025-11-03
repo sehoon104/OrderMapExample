@@ -26,7 +26,30 @@ This project demonstrates how a **flat, fixed-capacity hash map** can deliver mu
 - **Contiguous memory layout** for improved cache locality.
 - **O(1)** average insert/find/erase with bounded probe length.
 - No dynamic allocation or exceptions in hot paths.
+### Example Output
+```cpp
+=== Benchmark for: std::unordered_map ===
+insert (Order):
+  Throughput: 1.85 Mops/s
+  Latency ns: 50th Percentile=300, 95th Percentile=600, 99th Percentile=900, Avg=414.37
+find (Order):
+  Throughput: 1.73 Mops/s
+  Latency ns: 50th Percentile=400, 95th Percentile=800, 99th Percentile=1000, Avg=470.06
+erase (Order, N/2):
+  Throughput: 1.31 Mops/s
+  Latency ns: 50th Percentile=500, 95th Percentile=1100, 99th Percentile=1700, Avg=618.01
 
+=== Benchmark for: FlatHashMap ===
+insert (Order):
+  Throughput: 3.57 Mops/s
+  Latency ns: 50th Percentile=100, 95th Percentile=300, 99th Percentile=600, Avg=150.60
+find (Order):
+  Throughput: 3.99 Mops/s
+  Latency ns: 50th Percentile=100, 95th Percentile=300, 99th Percentile=600, Avg=143.34
+erase (Order, N/2):
+  Throughput: 3.54 Mops/s
+  Latency ns: 50th Percentile=100, 95th Percentile=400, 99th Percentile=700, Avg=167.21
+```
 ### `Order` Structure
 ```cpp
 struct Order {
